@@ -16,17 +16,24 @@ namespace MessaBot
 {
     class Program
     {
-        static void Main(string[] args) => new Program().Run(args).GetAwaiter().GetResult();
-        RiotApi api = RiotApi.GetInstance("RIOT_TOKEN_HERE");
-        StaticRiotApi staticApi = StaticRiotApi.GetInstance("RIOT_TOKEN_HERE");
+
+    static void Main(string[] args) => new Program().Run(args).GetAwaiter().GetResult();
+        RiotApi api;
+        StaticRiotApi staticApi;
         DiscordClient client;
         List<ChampionStatic> champions;
         List<SummonerSpellStatic> spells;
         public async Task Run(string[] args)
         {
+            System.IO.StreamReader file =
+            new System.IO.StreamReader("token.txt");
+            string riotToken = file.ReadLine();
+            string discordToken=file.ReadLine();
+            api = RiotApi.GetInstance(riotToken);
+            staticApi = StaticRiotApi.GetInstance(riotToken);
             client = new DiscordClient(new DiscordConfig()
             {
-                Token = "DISCORD_BOT_TOKEN",
+                Token = discordToken,
                 TokenType = TokenType.Bot,
                 DiscordBranch = Branch.Canary,
                 LogLevel = LogLevel.Debug,
