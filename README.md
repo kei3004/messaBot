@@ -8,3 +8,5 @@ Commands :
 $Game SummonerName retrieving the current game information for the player. (Working only on EUW for the moment).
 
 Bot designed in C# .Net Framework.
+
+![alt tag](http://i.imgur.com/Y93JvL7.png)
